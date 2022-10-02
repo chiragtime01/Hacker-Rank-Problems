@@ -1,0 +1,35 @@
+class Result {
+
+    /*
+     * Complete the 'getTotalX' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER_ARRAY a
+     *  2. INTEGER_ARRAY b
+     */
+
+    public static int getTotalX(List<Integer> a, List<Integer> b) {
+    Collections.sort(a);
+    Collections.sort(b);
+    HashSet<Integer> set = new HashSet<>();
+    for(int i=a.get(a.size()-1);i<=b.get(0);i++){
+        set.add(i);
+        for(int j=0;j<a.size();j++){
+            if(i%a.get(j)!=0){
+                set.remove(i);
+            }
+        }
+        for(int j=0;j<b.size();j++){
+            if(b.get(j)%i!=0 && set.contains(i)){
+                set.remove(i);
+            }
+        }
+      
+    } 
+    return set.size();
+      
+
+    }
+
+}
