@@ -1,0 +1,34 @@
+class Result {
+
+    /*
+     * Complete the 'migratoryBirds' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts INTEGER_ARRAY arr as parameter.
+     */
+
+    public static int migratoryBirds(List<Integer> arr) {
+     int s = arr.size(), max = 0, maxID = 0;
+        
+        Collections.sort(arr);
+        
+        for(int i = 0; i < s; i++) {
+            int count = 0;
+            for(int j = i; j < s; j++) {
+                if(arr.get(i) != arr.get(j)) {
+                    break;
+                }else if(arr.get(i) == arr.get(j)) {
+                    count++;
+                }
+            }
+            if(max < count) {
+                max = count;
+                maxID = arr.get(i);
+            }
+        }
+        return maxID;
+      
+
+    }
+
+}
