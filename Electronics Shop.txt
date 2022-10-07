@@ -1,0 +1,23 @@
+public class Solution {
+
+    /*
+     * Complete the getMoneySpent function below.
+     */
+    static int getMoneySpent(int[] keyboards, int[] drives, int b) {
+        /*
+         * Write your code here.
+         
+         */
+               int maxPrice = 0;
+        for (int i = 0; i < keyboards.length; i++) {
+            for (int j = 0; j < drives.length; j++) {
+                if(keyboards[i] + drives[j] > maxPrice 
+                && keyboards[i] + drives[j] <= b){
+                    maxPrice = keyboards[i] + drives[j];
+                }
+            }
+        }
+        if(maxPrice > 0) return maxPrice;
+        else return -1;
+
+    }
