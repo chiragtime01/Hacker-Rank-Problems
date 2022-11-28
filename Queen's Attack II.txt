@@ -1,0 +1,55 @@
+class Result {
+
+    static HashSet<String> hash = new HashSet<>();
+    
+    static int qx;
+    
+    static int qy;
+    
+    static int n;
+    
+    protected static int countCells(int stepX, int stepY)
+    {
+        int x = qx,
+            y = qy,
+            limitX = stepX < 0 ? 0 : n + 1,
+            limitY = stepY < 0 ? 0 : n + 1;
+            
+        int count = 0;
+        do {
+            x += stepX;
+            y += stepY;
+            
+            if (hash.contains(x + "-" + y)) {
+                break;
+            }
+            
+            if (x == limitX || y == limitY) {
+                break;
+            }
+            
+            count++;
+        } while (true);
+        
+        return count;
+    }
+
+    public static int queensAttack(int n, int k, int r_q, int c_q, List<List<Integer>> obstacles) 
+    {
+        Result.n = n;
+        Result.qx = r_q;
+        Result.qy = c_q;
+        for (List<Integer> obstacle: obstacles) {
+            hash.add(obstacle.get(0) + "-" + obstacle.get(1));
+        }
+    
+        return countCells(1, 0)
+            + countCells(-1, 0)
+            + countCells(0, 1)
+            + countCells(0, -1)
+            + countCells(1, 1)
+            + countCells(1, -1)
+            + countCells(-1, 1)
+            + countCells(-1, -1);
+    }
+}
