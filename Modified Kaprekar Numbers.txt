@@ -1,0 +1,37 @@
+class Result {
+
+    /*
+     * Complete the 'kaprekarNumbers' function below.
+     *
+     * The function accepts following parameters:
+     *  1. INTEGER p
+     *  2. INTEGER q
+     */
+
+    public static void kaprekarNumbers(int p, int q) {
+    // Write your code here
+     boolean flag =false;
+    for (long i = p; i <= q; i++) {
+        long sqr = i*i;
+        String sq = Long.toString(sqr);
+        int count=sq.length();
+        long left = 0;
+        long right = 0;
+        count = count%2==0 ? count/2 : (count+1)/2;
+        
+        left=sqr/(long)Math.pow(10, count);
+        right=sqr%(long)Math.pow(10, count);
+        
+        if (i==(left+right)) {
+            flag=true;
+            System.out.print(i+" ");
+        }
+    }
+       
+    
+    if(!flag) {
+        System.out.println("INVALID RANGE");
+
+    }}
+
+}
