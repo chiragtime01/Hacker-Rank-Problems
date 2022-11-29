@@ -1,0 +1,27 @@
+class Result {
+
+    /*
+     * Complete the 'organizingContainers' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts 2D_INTEGER_ARRAY container as parameter.
+     */
+
+    public static String organizingContainers(List<List<Integer>> container) {
+        int n = container.size();
+        int[] balls = new int[n];
+        int[] capacity = new int[n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                balls[i] += container.get(j).get(i);
+                capacity[i] += container.get(i).get(j);
+            }
+        }
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            ans ^= balls[i];
+            ans ^= capacity[i];
+        }
+        return ans == 0 ? "Possible" : "Impossible";
+    }
+}
